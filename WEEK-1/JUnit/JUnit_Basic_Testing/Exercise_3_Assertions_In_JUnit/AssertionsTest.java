@@ -1,0 +1,14 @@
+package junit.JUnit_Basic_Testing.Exercise_3_Assertions_In_JUnit;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class AssertionsTest {
+    @Test
+    public void testAssertions() {
+        assertEquals(5, 2 + 3);
+        assertTrue(5 > 3);
+        assertFalse(5 < 3);
+        assertNull(null);
+        assertNotNull(new Object());
+    }
+}
