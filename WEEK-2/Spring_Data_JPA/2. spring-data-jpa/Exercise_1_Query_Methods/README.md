@@ -1,4 +1,4 @@
-# HandsOn 8 - Spring Data JPA Query Methods
+# HandsOn 1 - Spring Data JPA Query Methods
 
 ## Objective
 

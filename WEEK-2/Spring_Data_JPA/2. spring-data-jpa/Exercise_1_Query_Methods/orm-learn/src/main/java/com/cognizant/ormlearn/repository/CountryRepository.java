@@ -10,12 +10,13 @@ import com.cognizant.ormlearn.model.Country;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, String> {
 
-    Country findByCode(String code);
-
+    // Search by containing text
     List<Country> findByNameContainingIgnoreCase(String text);
 
-    List<Country> findByNameStartingWithIgnoreCase(String text);
+    // Search by containing text and sort ascending
+    List<Country> findByNameContainingIgnoreCaseOrderByNameAsc(String text);
 
-    List<Country> findAllByOrderByNameAsc();
+    // Search by starting letter
+    List<Country> findByNameStartingWithIgnoreCase(String letter);
 
 }
