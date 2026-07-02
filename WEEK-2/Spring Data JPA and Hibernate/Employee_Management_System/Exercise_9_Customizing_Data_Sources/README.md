@@ -1,7 +1,7 @@
-# Exercise 8 - Creating Projections
+# Exercise 9 - Customizing Data Source Configuration
 
 ## Objective
-Implement interface-based and class-based projections using Spring Data JPA.
+Configure the datasource using Spring Boot auto-configuration and externalized configuration.
 
 ## Technologies Used
 - Java 17
@@ -11,17 +11,19 @@ Implement interface-based and class-based projections using Spring Data JPA.
 - H2 Database
 - Maven
 
-## Features Implemented
-- Interface-based Projection
-- Class-based Projection (DTO)
-- @Value Projection
-- Constructor Expression using @Query
+## Features
+- Spring Boot Auto Configuration
+- Externalized Configuration
+- Hikari Connection Pool
+- H2 In-Memory Database
+- REST APIs
 
-## REST APIs
+## APIs Tested
 
-GET /employees/projection
+POST /departments
 
-GET /employees/dto
+POST /employees
 
-## Output
-- Successfully retrieved selected employee fields using interface and DTO projections.
+GET /employees
+
+GET /departments
