@@ -15,6 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import main.java.com.cognizant.springlearn.security.JwtAutho
+
+import main.java.com.cognizant.springlearn.security.JwtAuthorizationFilter;rizationFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
