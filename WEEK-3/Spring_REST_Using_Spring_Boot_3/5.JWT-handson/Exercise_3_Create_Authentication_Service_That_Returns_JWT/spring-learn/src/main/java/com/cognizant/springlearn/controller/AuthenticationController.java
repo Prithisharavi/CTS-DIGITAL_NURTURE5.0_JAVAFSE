@@ -2,15 +2,14 @@ package com.cognizant.springlearn.controller;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.cognizant.springlearn.model.AuthenticationResponse;
-import com.cognizant.springlearn.util.JwtUtil;
 
 @RestController
 public class AuthenticationController {
@@ -19,25 +18,50 @@ public class AuthenticationController {
             LoggerFactory.getLogger(AuthenticationController.class);
 
     @GetMapping("/authenticate")
-    public AuthenticationResponse authenticate(
-            @RequestHeader("Authorization") String authorizationHeader) {
+    public Map<String, String> authenticate(
+            @RequestHeader("Authorization") String authHeader) {
 
         LOGGER.info("START");
 
-        String encodedCredentials = authorizationHeader.substring(6);
+        LOGGER.debug("Authorization Header : {}", authHeader);
 
-        byte[] decodedBytes =
-                Base64.getDecoder().decode(encodedCredentials);
+        String user = getUser(authHeader);
 
-        String credentials =
-                new String(decodedBytes, StandardCharsets.UTF_8);
+        LOGGER.debug("User : {}", user);
 
-        String username = credentials.split(":")[0];
+        Map<String, String> map = new HashMap<>();
 
-        String token = JwtUtil.generateToken(username);
+        map.put("token", "");
 
         LOGGER.info("END");
 
-        return new AuthenticationResponse(token);
+        return map;
+    }
+
+    private String getUser(String authHeader) {
+
+        LOGGER.debug("Inside getUser()");
+
+        // Remove "Basic "
+        String encodedCredentials = authHeader.substring(6);
+
+        LOGGER.debug("Encoded Credentials : {}", encodedCredentials);
+
+        // Decode Base64
+        byte[] decodedBytes =
+                Base64.getDecoder().decode(encodedCredentials);
+
+        // Convert byte array to String
+        String credentials =
+                new String(decodedBytes, StandardCharsets.UTF_8);
+
+        LOGGER.debug("Decoded Credentials : {}", credentials);
+
+        // Get username
+        String user = credentials.split(":")[0];
+
+        LOGGER.debug("Username : {}", user);
+
+        return user;
     }
 }
