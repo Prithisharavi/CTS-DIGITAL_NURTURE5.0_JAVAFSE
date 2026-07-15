@@ -1,0 +1,25 @@
+import React from "react";
+import { courses } from "./Data";
+
+function CourseDetails() {
+
+  const coursedet = (
+    <ul style={{ listStyleType: "none", padding: 0 }}>
+      {courses.map((course) => (
+        <div key={course.id}>
+          <h2>{course.cname}</h2>
+          <h4>{course.date}</h4>
+        </div>
+      ))}
+    </ul>
+  );
+
+  return (
+    <div>
+      <h1>Course Details</h1>
+      {coursedet}
+    </div>
+  );
+}
+
+export default CourseDetails;
